@@ -1,0 +1,3 @@
+task class_scope::method(uvm_phase phase);
+    super.build_phase(phase);
+endtask : method

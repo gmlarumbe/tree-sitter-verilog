@@ -1,0 +1,3 @@
+function class_scope::new(uvm_phase phase);
+    super.build_phase(phase);
+endfunction : new

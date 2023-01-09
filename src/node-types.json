@@ -2090,7 +2090,7 @@
       "required": true,
       "types": [
         {
-          "type": "class_type",
+          "type": "class_identifier",
           "named": true
         }
       ]
@@ -4949,10 +4949,6 @@
         },
         {
           "type": "function_statement_or_null",
-          "named": true
-        },
-        {
-          "type": "interface_identifier",
           "named": true
         },
         {

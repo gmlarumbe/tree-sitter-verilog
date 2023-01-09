@@ -1318,7 +1318,7 @@ const rules = {
     optseq('=', $.constant_expression)
   ),
 
-  class_scope: $ => seq($.class_type, '::'),
+  class_scope: $ => prec.left(PREC.PARENT, seq($.class_identifier, '::')),
 
   // class_type: $ => prec.left(PREC.PARENT, seq(
   class_type: $ => prec.right(seq(
@@ -1616,10 +1616,23 @@ const rules = {
 
   function_body_declaration: $ => seq(
     optional($.function_data_type_or_implicit1),
-    optional(choice(
-      seq($.interface_identifier, '.'),
-      $.class_scope
-    )),
+    // optional(choice(
+    //   seq($.interface_identifier, '.'),
+    //     seq(prec.left($.simple_identifier, '::')),
+    //     // seq(prec.left($.class_identifier, '::'))
+    //   // $.class_type,
+    //   // prec.left(seq($.class_identifier, '::')),
+    //   // prec.right(seq($.class_identifier, '::')),
+    //   // $.class_scope
+    // )),
+
+    optional($.class_scope),
+    // optional($.class_type),
+
+      // optional(prec.left(PREC.PARENT, seq($.simple_identifier, '::'))),
+      // optional(prec(PREC.PARENT, seq($.simple_identifier, '::'))),
+      // optional(seq($.simple_identifier, '::')),
+
     $.function_identifier,
     choice(
       seq(
@@ -4828,6 +4841,7 @@ module.exports = grammar({
     //
     [$.bind_target_scope, $.bind_target_instance],
     [$.class_type, $.package_scope],
+      // [$.class_type, $.package_scope, $.function_body_declaration],
 
     [$.data_type_or_implicit1, $._var_data_type],
     [$.list_of_port_identifiers, $.list_of_variable_identifiers],
