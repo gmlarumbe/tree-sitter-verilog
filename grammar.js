@@ -1318,10 +1318,11 @@ const rules = {
     optseq('=', $.constant_expression)
   ),
 
-  class_scope: $ => prec.left(PREC.PARENT, seq($.class_identifier, '::')),
+  class_scope: $ => seq($.class_type, '::'),
 
   // class_type: $ => prec.left(PREC.PARENT, seq(
-  class_type: $ => prec.right(seq(
+  // class_type: $ => prec.right(seq(
+  class_type: $ => seq(
     $.ps_class_identifier,
     optional($.parameter_value_assignment),
     repseq(
@@ -1329,7 +1330,7 @@ const rules = {
       $.class_identifier,
       optional($.parameter_value_assignment)
     )
-  )),
+  ),
 
   _integer_type: $ => choice(
     $.integer_vector_type,
@@ -1626,8 +1627,9 @@ const rules = {
     //   // $.class_scope
     // )),
 
+    // prec(PREC.PARENT, optional($.class_scope)),
+    // optional(prec(PREC.PARENT, $.class_scope)),
     optional($.class_scope),
-    // optional($.class_type),
 
       // optional(prec.left(PREC.PARENT, seq($.simple_identifier, '::'))),
       // optional(prec(PREC.PARENT, seq($.simple_identifier, '::'))),
