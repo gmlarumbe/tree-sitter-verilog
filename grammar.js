@@ -3009,7 +3009,9 @@ const rules = {
     $.procedural_timing_control_statement,
     $.wait_statement,
     $._procedural_assertion_statement,
-    seq($.clocking_drive, ';'),
+      // DANGER: Requires context-aware scanning?
+      // seq($.clocking_drive, ';'),
+      // End of DANGER
     // $.randsequence_statement,
     $.randcase_statement,
     $.expect_property_statement
@@ -4578,6 +4580,7 @@ const rules = {
   _hierarchical_event_identifier: $ => $.hierarchical_identifier,
 
   hierarchical_identifier: $ => prec.left(seq(
+    // hierarchical_identifier: $ => prec.left(PREC.PARENT,seq(
     optseq('$root', '.'),
     repseq($._identifier, optional($.constant_bit_select1), '.'),
     $._identifier
@@ -4729,6 +4732,8 @@ module.exports = grammar({
   word: $ => $.simple_identifier,
   rules: rules,
   extras: $ => [/\s/, $.comment],
+  // extras: $ => [/\s/, $.comment, $.text_macro_usage],
+  // extras: $ => [/\s/, $.comment, $._directives],
   inline: $ => [
     $.hierarchical_identifier,
     $._hierarchical_net_identifier,
@@ -4920,6 +4925,10 @@ module.exports = grammar({
       $.module_path_primary,
       $.data_type,
       $.class_type,
+        // DANGER
+        $.clockvar,
+        // End of DANGER
+
     ]))
     .concat(combi([
       $.primary, // +
