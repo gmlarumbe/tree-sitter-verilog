@@ -2630,6 +2630,7 @@ const rules = {
 
   /* A.4.1.4 Checker instantiation */
 
+    // TODO: Checker_instantiation looks the same as a function call (e.g. funcall();)
   checker_instantiation: $ => seq(
     $.ps_checker_identifier,
     $.name_of_instance,
@@ -3334,7 +3335,9 @@ const rules = {
   _procedural_assertion_statement: $ => choice(
     $._concurrent_assertion_statement,
     $._immediate_assertion_statement,
-    $.checker_instantiation
+      // DANGER: Avoid detecting checker instantiations instead of function calls
+      // $.checker_instantiation
+      // End of DANGER
   ),
 
   _immediate_assertion_statement: $ => choice(
