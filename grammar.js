@@ -157,11 +157,19 @@ const rules = {
 
   /* 22-3 usage */
 
-  text_macro_usage: $ => seq(
+    // DANGER
+  // text_macro_usage: $ => seq(
+  //   '`',
+  //   $.text_macro_identifier,
+  //   optseq('(', $.list_of_actual_arguments, ')')
+  // ),
+
+    text_macro_usage: $ => prec.right(seq(
     '`',
     $.text_macro_identifier,
     optseq('(', $.list_of_actual_arguments, ')')
-  ),
+    )),
+    // End of DANGER
 
   simple_text_macro_usage: $ => seq(
     '`',
@@ -2985,11 +2993,20 @@ const rules = {
     seq(repeat($.attribute_instance), ';')
   ),
 
-  statement: $ => seq(
-    optseq($._block_identifier, ':'),
-    repeat($.attribute_instance),
-    $.statement_item
-  ),
+    // DANGER
+  // statement: $ => seq(
+  //   optseq($._block_identifier, ':'),
+  //   repeat($.attribute_instance),
+  //   $.statement_item
+  // ),
+
+    statement: $ => choice(
+        $.text_macro_usage,
+        seq(optseq($._block_identifier, ':'),
+            repeat($.attribute_instance),
+            $.statement_item)
+    ),
+    // End of DANGER
 
   statement_item: $ => choice(
     seq($.blocking_assignment, ';'),
@@ -3013,7 +3030,10 @@ const rules = {
       // seq($.clocking_drive, ';'),
       // End of DANGER
     // $.randsequence_statement,
-    $.randcase_statement,
+
+      // DANGER
+    // $.randcase_statement,
+      // End of DANGER
     $.expect_property_statement
   ),
 
