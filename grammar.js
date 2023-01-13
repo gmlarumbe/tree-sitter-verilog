@@ -3047,7 +3047,7 @@ const rules = {
     ),
     // End of DANGER
 
-    statement_item: $ => prec(PREC.PARENT, choice(
+  statement_item: $ => prec(PREC.PARENT, choice(
     seq($.blocking_assignment, ';'),
     seq($.nonblocking_assignment, ';'),
     seq($.procedural_continuous_assignment, ';'),
@@ -3355,7 +3355,10 @@ const rules = {
 
   subroutine_call_statement: $ => choice(
     seq($.subroutine_call, ';'),
-    seq('void\'', '(', $.function_subroutine_call, ')', ';')
+    seq('void\'', '(', $.function_subroutine_call, ')', ';'),
+      // DANGER: Try to add static methods calls here?
+      seq($.class_scope, $.tf_call, ';'),
+      // End of DANGER
   ),
 
   // A.6.10 Assertion statements
@@ -4046,7 +4049,7 @@ const rules = {
   subroutine_call: $ => choice(
     $.tf_call,
       $.system_tf_call, // INFO: Already present as a statement_item
-      // $.method_call,     // INFO: Gave many errors with respect to hierarchical/sequences/etc...
+      // $.method_call,   // INFO: Gave many errors with respect to hierarchical/sequences/etc...
     seq(optseq('std', '::'), $.randomize_call)
   ),
 
@@ -4081,7 +4084,12 @@ const rules = {
     ')'
   ),
 
-  method_call: $ => seq($._method_call_root, '.', $.method_call_body),
+    // DANGER: Add static methods calls?
+    method_call: $ => seq($._method_call_root, '.', $.method_call_body),
+
+    // Static attempt, better try as a separate statement?
+    // method_call: $ => seq($.class_scope, $.tf_call),
+    // End of DANGER
 
   method_call_body: $ => choice(
     prec.left(seq(
@@ -4233,7 +4241,10 @@ const rules = {
 
     $.conditional_expression,
     $.inside_expression,
-    $.tagged_union_expression
+    $.tagged_union_expression,
+      // DANGER: Static function calls in if condition
+      // seq($.class_scope, $.tf_call),
+      // End of DANGER
   ),
 
   tagged_union_expression: $ => prec.left(seq(
@@ -4347,16 +4358,31 @@ const rules = {
     $.sequence_method_call,
     'this',
     '$',
-    'null'
+    'null',
+
+      // DANGER: Static function calls in if condition
+      seq($.class_scope, $.tf_call),
+      // End of DANGER
+
   ),
 
-  class_qualifier: $ => seq(
+    // DANGER: Trying to fix conflict after including static method calls inside conditional expressions ($.expressions)
+  // class_qualifier: $ => seq(
+  //   optseq('local', '::'),
+  //   choice( // TODO optional?
+  //     seq($.implicit_class_handle, '.'),
+  //     $.class_scope
+  //   )
+  // ),
+
+    class_qualifier: $ => prec.right(seq(
     optseq('local', '::'),
     choice( // TODO optional?
       seq($.implicit_class_handle, '.'),
       $.class_scope
     )
-  ),
+    )),
+    // End of DANGER
 
 
   range_expression: $ => choice(
@@ -5094,6 +5120,18 @@ module.exports = grammar({
       $.constant_function_call,
       $.primary_literal,
     ]))
+    // DANGER: Added after method_call implementation?
+    // .concat(combi([
+    //     $.sequence_instance,
+    //     $.let_expression,
+    //     $.tf_call,
+    //     $.primary,
+    //     $.variable_lvalue,
+    //     $.nonrange_variable_lvalue,
+    //     $.generate_block_identifier,
+    //     $._sequence_identifier,
+    // ]))
+    // End of DANGER
 });
 
 /* eslint camelcase: 0 */
