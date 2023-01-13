@@ -7362,6 +7362,10 @@
           "named": true
         },
         {
+          "type": "implicit_class_handle",
+          "named": true
+        },
+        {
           "type": "method_call_body",
           "named": true
         },

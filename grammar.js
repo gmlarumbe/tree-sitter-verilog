@@ -4090,7 +4090,13 @@ const rules = {
 
     // INFO: This fixed all the conflicts with methods
     // method_call: $ => seq($.method_identifier, '.', $.method_call_body), // DANGER: Why this didn't work?
-    method_call: $ => seq($._identifier, '.', $.method_call_body), // INFO: This one worked!
+    // method_call: $ => seq($._identifier, '.', $.method_call_body), // INFO: This one worked!
+    method_call: $ => seq(
+        choice($.implicit_class_handle,
+               $._identifier),
+        '.',
+        $.method_call_body,
+    ), // INFO: This one worked!
 
     // Static attempt, better try as a separate statement?
     // method_call: $ => seq($.class_scope, $.tf_call),
@@ -5045,6 +5051,8 @@ module.exports = grammar({
       [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
       [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.generate_block_identifier, $._sequence_identifier],
       [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.net_lvalue, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
+
+      [$.variable_lvalue, $.method_identifier],
       // End of DANGER
 
   ]
