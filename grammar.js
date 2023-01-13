@@ -1158,7 +1158,10 @@ const rules = {
       optional('const'),
       optional('var'),
       optional($.lifetime),
-      optional($.data_type_or_implicit1),
+        // DANGER
+      // optional($.data_type_or_implicit1),
+      $.data_type_or_implicit1,
+        // End of DANGER
       $.list_of_variable_decl_assignments,
       ';'
     ),
@@ -3009,7 +3012,7 @@ const rules = {
     ),
     // End of DANGER
 
-  statement_item: $ => choice(
+    statement_item: $ => prec(PREC.PARENT, choice(
     seq($.blocking_assignment, ';'),
     seq($.nonblocking_assignment, ';'),
     seq($.procedural_continuous_assignment, ';'),
@@ -3017,7 +3020,9 @@ const rules = {
     $.case_statement,
     $.conditional_statement,
     seq($.inc_or_dec_expression, ';'),
-    // $.subroutine_call_statement,
+      // DANGER: Gave many many conflicts after adding precedence/associactivity to subroutine_call rule
+      $.subroutine_call_statement,
+      // End of DANGER
     $.disable_statement,
     $.event_trigger,
     $.loop_statement,
@@ -3036,7 +3041,7 @@ const rules = {
     // $.randcase_statement,
       // End of DANGER
     $.expect_property_statement
-  ),
+    )),
 
   function_statement: $ => $.statement,
 
@@ -3974,7 +3979,10 @@ const rules = {
 
   constant_function_call: $ => $.function_subroutine_call,
 
+    // DANGER
   tf_call: $ => prec.left(seq(
+  // tf_call: $ => prec.left(PREC.PARENT, seq(
+      // End of DANGER
     $._hierarchical_tf_identifier, // FIXME
     // $.ps_or_hierarchical_tf_identifier,
     repeat($.attribute_instance),
@@ -3999,12 +4007,21 @@ const rules = {
     ))
   )),
 
+    // DANGER:
   subroutine_call: $ => choice(
     $.tf_call,
-    $.system_tf_call,
-    $.method_call,
+      $.system_tf_call, // INFO: Already present as a statement_item
+      // $.method_call,     // INFO: Gave many errors with respect to hierarchical/sequences/etc...
     seq(optseq('std', '::'), $.randomize_call)
   ),
+
+    // subroutine_call: $ => prec.left(choice(
+    // $.tf_call,
+    // $.system_tf_call,
+    // $.method_call,
+    // seq(optseq('std', '::'), $.randomize_call)
+    // )),
+    // End of DANGER
 
   function_subroutine_call: $ => $.subroutine_call,
 
@@ -4920,6 +4937,12 @@ module.exports = grammar({
 
     [$.variable_lvalue, $.clockvar],
     [$.combinational_entry, $._seq_input_list],
+
+      // DANGER
+      // [$.statement_item, $.subroutine_call],
+      // [$.sequence_instance, $.let_expression, $.tf_call, $.primary, $.variable_lvalue, $.nonrange_variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
+      // [$.sequence_instance, $.tf_call, $.constant_primary, $.primary, $.variable_lvalue, $.nonrange_variable_lvalue, $.generate_block_identifier],
+      // End of DANGER
   ]
     .concat(combi([
       $.constant_primary,
