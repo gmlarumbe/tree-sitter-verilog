@@ -2220,10 +2220,11 @@ const rules = {
     ';'
   ),
 
+    // DANGER: Seems different to what the LRM states
   bins_or_options: $ => choice(
     $.coverage_option,
     seq(
-      'wildcard',
+      optional('wildcard'),
       $.bins_keyword,
       $._bin_identifier,
       optseq('[', optional($._covergroup_expression), ']'),
@@ -2233,7 +2234,7 @@ const rules = {
       optional(prec.right(PREC.iff, seq('iff', '(', $.expression, ')')))
     ),
     seq(
-      'wildcard',
+      optional('wildcard'),
       $.bins_keyword,
       $._bin_identifier,
       optseq('[', optional($._covergroup_expression), ']'),
@@ -2243,7 +2244,7 @@ const rules = {
       optional(prec.right(PREC.iff, seq('iff', '(', $.expression, ')')))
     ),
     seq(
-      'wildcard',
+      optional('wildcard'),
       $.bins_keyword,
       $._bin_identifier,
       optseq('[', optional($._covergroup_expression), ']'),
@@ -2252,7 +2253,7 @@ const rules = {
       optional(prec.right(PREC.iff, seq('iff', '(', $.expression, ')')))
     ),
     seq(
-      'wildcard',
+      optional('wildcard'),
       $.bins_keyword,
       $._bin_identifier,
       optseq('[', ']'),
@@ -2277,6 +2278,8 @@ const rules = {
       optional(prec.right(PREC.iff, seq('iff', '(', $.expression, ')')))
     )
   ),
+    // End of DANGER
+
 
   bins_keyword: $ => choice('bins', 'illegal_bins', 'ignore_bins'),
 
@@ -2374,7 +2377,17 @@ const rules = {
 
   _cross_set_expression: $ => $._covergroup_expression,
 
+    // DANGER: Add support for { and } in covergroup expressions
   _covergroup_expression: $ => $.expression,
+
+    // _covergroup_expression: $ => choice(
+    //     seq('{', $.expression, '}'),
+    //     $.expression,
+    // ),
+
+    // _covergroup_expression: $ => seq('{', $.expression, '}'),
+
+    // End of DANGER
 
   /* A.2.12 Let declarations */
 
