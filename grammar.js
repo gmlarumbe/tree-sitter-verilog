@@ -658,7 +658,12 @@ const rules = {
     $.always_construct,
     $.loop_generate_construct,
     $._conditional_generate_construct,
-    $.elaboration_system_task
+      $.elaboration_system_task,
+      // DANGER: Avoid issues with directives inside modules (e.g. `include "uvm_macros.svh" in an interface)
+      // INFO: Gave many conflicts, didn't really work
+      // $._directives,
+      // $.text_macro_usage,
+      // End of DANGER
   ),
 
   _module_item: $ => choice(
@@ -682,7 +687,12 @@ const rules = {
     $.genvar_declaration,
     $.clocking_declaration,
     seq('default', 'clocking', $.clocking_identifier, ';'),
-    seq('default', 'disable', 'iff', $.expression_or_dist, ';')
+      seq('default', 'disable', 'iff', $.expression_or_dist, ';'),
+      // DANGER: Avoid issues with directives inside modules (e.g. `include "uvm_macros.svh" in an interface)
+      // INFO: Gave many conflicts, didn't really work
+      // $._directives,
+      // $.text_macro_usage,
+      // End of DANGER
   ),
 
   _non_port_module_item: $ => choice(
@@ -789,7 +799,12 @@ const rules = {
 
   interface_or_generate_item: $ => choice(
     seq(repeat($.attribute_instance), $._module_common_item),
-    seq(repeat($.attribute_instance), $.extern_tf_declaration)
+      seq(repeat($.attribute_instance), $.extern_tf_declaration),
+      // DANGER: Avoid issues with directives inside modules (e.g. `include "uvm_macros.svh" in an interface)
+      // INFO: Gave many conflicts, didn't really work
+      $._directives,
+      // $.text_macro_usage,
+      // End of DANGER
   ),
 
   extern_tf_declaration: $ => choice(
@@ -1063,7 +1078,14 @@ const rules = {
     $.covergroup_declaration,
     $.overload_declaration,
     $._assertion_item_declaration,
-    ';'
+      ';',
+      // DANGER: Avoid issues with directives inside modules (e.g. `include "uvm_macros.svh" in an interface)
+      // INFO: Gave many conflicts, didn't really work
+        // prec(PREC.PARENT, $._directives),
+      // $.text_macro_usage,
+      // $.include_compiler_directive,
+      // prec(1, $.include_compiler_directive),
+      // End of DANGER
   ),
 
   anonymous_program: $ => seq(
