@@ -3356,6 +3356,7 @@ const rules = {
   subroutine_call_statement: $ => choice(
     seq($.subroutine_call, ';'),
     seq('void\'', '(', $.function_subroutine_call, ')', ';'),
+    seq($.method_call, ';'),   // INFO: Gave many errors with respect to hierarchical/sequences/etc...
       // DANGER: Try to add static methods calls here?
       seq($.class_scope, $.tf_call, ';'),
       // End of DANGER
@@ -4085,24 +4086,42 @@ const rules = {
   ),
 
     // DANGER: Add static methods calls?
-    method_call: $ => seq($._method_call_root, '.', $.method_call_body),
+    // method_call: $ => seq($._method_call_root, '.', $.method_call_body),
+
+    // INFO: This fixed all the conflicts with methods
+    // method_call: $ => seq($.method_identifier, '.', $.method_call_body), // DANGER: Why this didn't work?
+    method_call: $ => seq($._identifier, '.', $.method_call_body), // INFO: This one worked!
 
     // Static attempt, better try as a separate statement?
     // method_call: $ => seq($.class_scope, $.tf_call),
-    // End of DANGER
 
-  method_call_body: $ => choice(
-    prec.left(seq(
+  // method_call_body: $ => choice(
+  //   prec.left(seq(
+  //     $.method_identifier,
+  //     repeat($.attribute_instance),
+  //     optional($.list_of_arguments_parent)
+  //   )),
+  //   $._built_in_method_call
+  // ),
+
+  // method_call_body: $ => choice(
+  method_call_body: $ => prec.right(choice(
+  // method_call_body: $ => prec.left(choice(
+    seq(
       $.method_identifier,
       repeat($.attribute_instance),
       optional($.list_of_arguments_parent)
-    )),
+    ),
     $._built_in_method_call
+  )
   ),
+
+    // End of DANGER
 
   _built_in_method_call: $ => choice(
     $.array_manipulation_call,
-    $.randomize_call
+    $.randomize_call,
+      // TODO: What about queue methods?
   ),
 
   array_manipulation_call: $ => prec.left(seq(
@@ -4134,7 +4153,24 @@ const rules = {
     )
   )),
 
-  _method_call_root: $ => choice($.primary, $.implicit_class_handle),
+    // DANGER
+  // _method_call_root: $ => choice($.primary, $.implicit_class_handle),
+  // _method_call_root: $ => choice($.method_identifier, $.implicit_class_handle),
+  // _method_call_root: $ => choice($._identifier, $.implicit_class_handle),
+
+  _method_call_root: $ => choice(
+    // _method_call_root: $ => prec(PREC.PARENT, choice(
+    // _method_call_root: $ => prec(-1, choice(
+      // seq($._identifier, optional($.bit_select1)),
+      seq($._identifier,
+          repeat(seq('[', $.decimal_number, ']'))),
+
+      // seq($.method_identifier, optional($.bit_select1)),
+      // seq($.method_identifier, optional($.constant_bit_select1)),
+        $.implicit_class_handle
+    // )
+  ),
+    // End of DANGER
 
   array_method_name: $ => choice(
     $.method_identifier, 'unique', 'and', 'or', 'xor'
@@ -4362,6 +4398,8 @@ const rules = {
 
       // DANGER: Static function calls in if condition
       seq($.class_scope, $.tf_call),
+      // Method calls in if condition?
+      $.method_call,
       // End of DANGER
 
   ),
@@ -5003,7 +5041,12 @@ module.exports = grammar({
       // [$.statement_item, $.subroutine_call],
       // [$.sequence_instance, $.let_expression, $.tf_call, $.primary, $.variable_lvalue, $.nonrange_variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
       // [$.sequence_instance, $.tf_call, $.constant_primary, $.primary, $.variable_lvalue, $.nonrange_variable_lvalue, $.generate_block_identifier],
+
+      [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
+      [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.generate_block_identifier, $._sequence_identifier],
+      [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.net_lvalue, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
       // End of DANGER
+
   ]
     .concat(combi([
       $.constant_primary,

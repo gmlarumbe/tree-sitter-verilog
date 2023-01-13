@@ -6269,6 +6269,10 @@
           "named": true
         },
         {
+          "type": "begin_keywords",
+          "named": true
+        },
+        {
           "type": "bind_directive",
           "named": true
         },
@@ -6290,6 +6294,10 @@
         },
         {
           "type": "continuous_assign",
+          "named": true
+        },
+        {
+          "type": "default_nettype_compiler_directive",
           "named": true
         },
         {
@@ -6317,7 +6325,15 @@
           "named": true
         },
         {
+          "type": "id_directive",
+          "named": true
+        },
+        {
           "type": "if_generate_construct",
+          "named": true
+        },
+        {
+          "type": "include_compiler_directive",
           "named": true
         },
         {
@@ -6326,6 +6342,10 @@
         },
         {
           "type": "interface_instantiation",
+          "named": true
+        },
+        {
+          "type": "line_compiler_directive",
           "named": true
         },
         {
@@ -6342,6 +6362,26 @@
         },
         {
           "type": "program_instantiation",
+          "named": true
+        },
+        {
+          "type": "text_macro_definition",
+          "named": true
+        },
+        {
+          "type": "text_macro_usage",
+          "named": true
+        },
+        {
+          "type": "timescale_compiler_directive",
+          "named": true
+        },
+        {
+          "type": "unconnected_drive",
+          "named": true
+        },
+        {
+          "type": "zero_directive",
           "named": true
         }
       ]
@@ -7300,6 +7340,29 @@
       "types": [
         {
           "type": "escaped_identifier",
+          "named": true
+        },
+        {
+          "type": "simple_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "method_call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "escaped_identifier",
+          "named": true
+        },
+        {
+          "type": "method_call_body",
           "named": true
         },
         {
@@ -9622,6 +9685,10 @@
           "named": true
         },
         {
+          "type": "class_scope",
+          "named": true
+        },
+        {
           "type": "concatenation",
           "named": true
         },
@@ -9643,6 +9710,10 @@
         },
         {
           "type": "let_expression",
+          "named": true
+        },
+        {
+          "type": "method_call",
           "named": true
         },
         {
@@ -9679,6 +9750,10 @@
         },
         {
           "type": "streaming_concatenation",
+          "named": true
+        },
+        {
+          "type": "tf_call",
           "named": true
         }
       ]
@@ -11812,15 +11887,27 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "class_scope",
+          "named": true
+        },
         {
           "type": "function_subroutine_call",
           "named": true
         },
         {
+          "type": "method_call",
+          "named": true
+        },
+        {
           "type": "subroutine_call",
+          "named": true
+        },
+        {
+          "type": "tf_call",
           "named": true
         }
       ]
