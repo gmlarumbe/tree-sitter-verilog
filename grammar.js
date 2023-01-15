@@ -1086,6 +1086,11 @@ const rules = {
       // $.include_compiler_directive,
       // prec(1, $.include_compiler_directive),
       // End of DANGER
+
+      // DANGER: Second attempt
+      $._directives,            // INFO: Adding conflict to determine it in runtime?
+      // prec(PREC.PARENT, $._directives), // INFO: Gave many errors
+      // ENd of DANGER
   ),
 
   anonymous_program: $ => seq(
@@ -5053,6 +5058,11 @@ module.exports = grammar({
       [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.net_lvalue, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
 
       [$.variable_lvalue, $.method_identifier],
+
+      // Directives in packages
+      [$._description, $.package_or_generate_item_declaration],
+      [$.interface_or_generate_item, $.package_or_generate_item_declaration],
+      [$._non_port_module_item, $.package_or_generate_item_declaration],
       // End of DANGER
 
   ]
