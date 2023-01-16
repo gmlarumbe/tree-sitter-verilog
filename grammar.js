@@ -4488,25 +4488,34 @@ const rules = {
 
   select1: $ => choice( // reordered -> non empty
       // DANGER
-    // prec.left(PREC.PARENT, seq( // 1xx
-      seq( // 1xx
+    prec.left(PREC.PARENT, seq( // 1xx
+      // seq( // 1xx
         repseq('.', $.member_identifier, optional($.bit_select1)), '.', $.member_identifier,
         $.bit_select1,
         repeat1(seq('[', $._part_select_range, ']'))
-    // )
+    )
     ),
       // End of DANGER
-    // prec.left(PREC.PARENT, seq( // 1xx
-    seq( // 1xx
+    prec.left(PREC.PARENT, seq( // 1xx
+    // seq( // 1xx
       repseq('.', $.member_identifier, optional($.bit_select1)), '.', $.member_identifier,
         repeat1(seq('[', $._part_select_range, ']'))
-    // )
+    )
     ),
-    seq( // 1xx
+    prec.left(PREC.PARENT, seq( // 1xx
+    // seq( // 1xx
       repseq('.', $.member_identifier, optional($.bit_select1)), '.', $.member_identifier,
       $.bit_select1,
-    // )
+    )
     ),
+    prec.left(PREC.PARENT, seq( // 1xx
+      // seq( // 1xx
+          repseq('.', $.member_identifier, optional($.bit_select1)), '.', $.member_identifier,
+          // $.bit_select1,
+          // repeat1(seq('[', $._part_select_range, ']'))
+          )
+      ),
+
     // prec.left(PREC.PARENT, seq( // 01x
     prec.left(PREC.PARENT, seq( // 1xx
     // seq( // 01x
@@ -4521,7 +4530,8 @@ const rules = {
         repeat1(seq('[', $._part_select_range, ']'))
     )
     ),
-    seq( // 001
+    prec.left(PREC.PARENT, seq( // 1xx
+    // seq( // 001
       //
       //
         // DANGER
@@ -4529,7 +4539,7 @@ const rules = {
 
         // repeat1(seq('[', $._part_select_range, ']'))
         // End of DANGER
-    // )
+    )
     )
   ),
 
