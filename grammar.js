@@ -4172,9 +4172,9 @@ const rules = {
   _method_call_root: $ => choice(
     // _method_call_root: $ => prec(PREC.PARENT, choice(
     // _method_call_root: $ => prec(-1, choice(
-      // seq($._identifier, optional($.bit_select1)),
-      seq($._identifier,
-          repeat(seq('[', $.decimal_number, ']'))),
+      seq($._identifier, optional($.bit_select1)),
+      // seq($._identifier,
+      //     repeat(seq('[', $.decimal_number, ']'))),
 
       // seq($.method_identifier, optional($.bit_select1)),
       // seq($.method_identifier, optional($.constant_bit_select1)),
@@ -4342,9 +4342,12 @@ const rules = {
     )
   ),
 
-  _part_select_range: $ => choice(
+  // _part_select_range: $ => choice(
+  _part_select_range: $ => prec.right(PREC.PARENT, choice(
+  // _part_select_range: $ => prec.right(choice(
     $.constant_range,
     $.indexed_range
+    )
   ),
 
   indexed_range: $ => seq(
@@ -4475,26 +4478,59 @@ const rules = {
   //   '[', $.expression, ']')
   // )),
 
-   bit_select1: $ => prec.right(repeat1(seq( // reordered -> non empty
+   // bit_select1: $ => prec.right(1, repeat1(seq( // reordered -> non empty
+   // bit_select1: $ => prec.right(repeat1(seq( // reordered -> non empty
+   // bit_select1: $ => prec.left(repeat1(seq( // reordered -> non empty
+   bit_select1: $ => repeat1(seq( // reordered -> non empty
     '[', $.expression, ']')
-   )),
+   // )
+   ),
 
   select1: $ => choice( // reordered -> non empty
-    prec.left(PREC.PARENT, seq( // 1xx
+      // DANGER
+    // prec.left(PREC.PARENT, seq( // 1xx
+      seq( // 1xx
+        repseq('.', $.member_identifier, optional($.bit_select1)), '.', $.member_identifier,
+        $.bit_select1,
+        repeat1(seq('[', $._part_select_range, ']'))
+    // )
+    ),
+      // End of DANGER
+    // prec.left(PREC.PARENT, seq( // 1xx
+    seq( // 1xx
       repseq('.', $.member_identifier, optional($.bit_select1)), '.', $.member_identifier,
-      optional($.bit_select1),
-      optseq('[', $._part_select_range, ']')
-    )),
-    prec.left(PREC.PARENT, seq( // 01x
+        repeat1(seq('[', $._part_select_range, ']'))
+    // )
+    ),
+    seq( // 1xx
+      repseq('.', $.member_identifier, optional($.bit_select1)), '.', $.member_identifier,
+      $.bit_select1,
+    // )
+    ),
+    // prec.left(PREC.PARENT, seq( // 01x
+    prec.left(PREC.PARENT, seq( // 1xx
+    // seq( // 01x
       //
       $.bit_select1,
-      optseq('[', $._part_select_range, ']')
-    )),
-    prec.left(PREC.PARENT, seq( // 001
+        repeat1(seq('[', $._part_select_range, ']'))
+    )
+    ),
+    prec.left(PREC.PARENT, seq( // 1xx
+    // seq( // 01x
+      //
+        repeat1(seq('[', $._part_select_range, ']'))
+    )
+    ),
+    seq( // 001
       //
       //
-      seq('[', $._part_select_range, ']')
-    ))
+        // DANGER
+        $.bit_select1,
+
+        // repeat1(seq('[', $._part_select_range, ']'))
+        // End of DANGER
+    // )
+    )
   ),
 
   nonrange_select1: $ => choice( // reordered -> non empty
@@ -4994,7 +5030,7 @@ module.exports = grammar({
     [$.property_spec, $.property_expr],
     [$.property_expr, $.sequence_expr],
 
-    [$.select1, $.bit_select1],
+    // [$.select1, $.bit_select1],
     [$.select1, $.nonrange_select1],
     //
     [$.class_method, $.constraint_prototype_qualifier],
@@ -5063,7 +5099,27 @@ module.exports = grammar({
       [$._description, $.package_or_generate_item_declaration],
       [$.interface_or_generate_item, $.package_or_generate_item_declaration],
       [$._non_port_module_item, $.package_or_generate_item_declaration],
+
+
+      // Method call conflicts?
+      // [$.sequence_instance, $.tf_call, $._method_call_root, $.primary, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
+      // [$.data_type, $.sequence_instance, $.tf_call, $._method_call_root, $.constant_primary, $.primary, $.variable_lvalue, $.generate_block_identifier],
+      // [$.tf_call, $._method_call_root, $.variable_lvalue, $.nonrange_variable_lvalue],
+      // [$.sequence_instance, $.tf_call, $._method_call_root, $.constant_primary, $.primary, $.variable_lvalue, $.generate_block_identifier],
+      // [$.sequence_instance, $.tf_call, $._method_call_root, $.primary, $.generate_block_identifier, $._sequence_identifier],
+      // [$.sequence_instance, $.tf_call, $._method_call_root, $.constant_primary, $.primary, $.generate_block_identifier],
+      // [$.port_reference, $.sequence_instance, $.tf_call, $._method_call_root, $.constant_primary, $.primary, $.variable_lvalue, $.generate_block_identifier],
+      // [$.sequence_instance, $.tf_call, $._method_call_root, $.primary, $.net_lvalue, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
+
+      // [$.sequence_instance, $.tf_call, $.primary, $.variable_lvalue, $.generate_block_identifier, $.method_identifier, $._sequence_identifier],
+      // [$.tf_call, $.variable_lvalue, $.nonrange_variable_lvalue, $.method_identifier],
+      // [$.sequence_instance, $.tf_call, $.primary, $.generate_block_identifier, $.method_identifier, $._sequence_identifier],
+      // [$.sequence_instance, $.tf_call, $.primary, $.net_lvalue, $.variable_lvalue, $.generate_block_identifier, $.method_identifier, $._sequence_identifier],
       // End of DANGER
+
+      // DANGER: Fixing indexes with part selects
+      [$.select1, $.method_identifier],
+      [$.bit_select1],
 
   ]
     .concat(combi([
