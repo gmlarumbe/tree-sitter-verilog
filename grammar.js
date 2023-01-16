@@ -2343,12 +2343,16 @@ const rules = {
   ),
 
   cross_body: $ => choice(
-    seq('{', repseq($.cross_body_item, ';'), '}'),
-    ';'
+    // seq('{', repseq($.cross_body_item, ';'), '}'),
+    // ';'
+      // DANGER
+      seq('{', repeat($.cross_body_item), '}'),
+      // End of DANGER
+
   ),
 
   cross_body_item: $ => choice(
-    $.function_declaration, // FIXME standard function_declaraton => function_declaration
+    // $.function_declaration, // FIXME standard function_declaraton => function_declaration
     seq($.bins_selection_or_option, ';')
   ),
 
