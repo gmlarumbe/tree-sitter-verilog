@@ -260,11 +260,16 @@ const rules = {
   ),
 
   // TODO missing arguments, empty list of arguments
-
+    // DANGER: Only used in directives
   list_of_actual_arguments: $ => sep1(',', $._actual_argument),
 
-  _actual_argument: $ => $.expression,
+  // _actual_argument: $ => $.expression,
+    _actual_argument: $ => choice(
+        $.expression,
+        seq($._identifier, '#', '(', $._identifier, repeat(seq(',', $._identifier)), ')') // Corner case, `uvm_component_param_utils(foo#(WIDTH))
+    ),
 
+    // End of DANGER
   /* A.1.1 Library source text */
 
   // library_text: $ => repeat($.library_description),
@@ -5134,6 +5139,10 @@ module.exports = grammar({
       // DANGER: Fixing indexes with part selects
       [$.select1, $.method_identifier],
       [$.bit_select1],
+
+      // DANGER: Conflicts with parameterized macros: `uvm_component_param_utils(foo#(WIDTH))
+      // Conflicts
+      [$._actual_argument, $.data_type, $.class_type, $.let_expression, $.tf_call, $.primary],
 
   ]
     .concat(combi([

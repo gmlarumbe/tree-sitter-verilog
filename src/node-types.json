@@ -6711,7 +6711,15 @@
       "required": true,
       "types": [
         {
+          "type": "escaped_identifier",
+          "named": true
+        },
+        {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "simple_identifier",
           "named": true
         }
       ]
