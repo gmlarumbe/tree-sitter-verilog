@@ -36,24 +36,20 @@ endfunction
 ----
 
 (source_file
-      (package_or_generate_item_declaration
-        (function_declaration
-          (function_body_declaration
-            (function_data_type_or_implicit1
-              (data_type_or_void))
-            (function_identifier
-              (function_identifier
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_data_type_or_implicit1
+          (data_type_or_void))
+        (function_identifier
+          (function_identifier
+            (simple_identifier)))
+        (block_item_declaration
+          (data_declaration
+            (list_of_variable_decl_assignments
+              (variable_decl_assignment
                 (simple_identifier)))
-            (function_statement_or_null
-              (function_statement
-                (statement
-                  (statement_item
-                    (checker_instantiation
-                      (checker_identifier
-                        (simple_identifier))
-                      (name_of_instance
-                        (instance_identifier
-                          (MISSING simple_identifier))))))))))))
+            (ERROR)))))))
 
 
 ============================================
@@ -67,33 +63,27 @@ endfunction
 ----
 
 (source_file
-      (package_or_generate_item_declaration
-        (function_declaration
-          (function_body_declaration
-            (function_data_type_or_implicit1
-              (data_type_or_void))
-            (function_identifier
-              (function_identifier
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_data_type_or_implicit1
+          (data_type_or_void))
+        (function_identifier
+          (function_identifier
+            (simple_identifier)))
+        (block_item_declaration
+          (data_declaration
+            (data_type_or_implicit1
+              (data_type
                 (simple_identifier)))
-            (function_statement_or_null
-              (function_statement
-                (statement
-                  (statement_item
-                    (checker_instantiation
-                      (checker_identifier
-                        (simple_identifier))
-                      (name_of_instance
-                        (instance_identifier
-                          (MISSING simple_identifier)))
-                      (event_expression
-                        (event_expression
-                          (expression
-                            (primary
-                              (simple_identifier))))
-                        (event_expression
-                          (expression
-                            (primary
-                              (simple_identifier))))))))))))))
+            (ERROR)
+            (list_of_variable_decl_assignments
+              (variable_decl_assignment
+                (simple_identifier))
+              (variable_decl_assignment
+                (simple_identifier)))
+            (ERROR)))))))
+
 
 ============================================
 subroutines - named arguments
@@ -106,36 +96,37 @@ endfunction
 ----
 
 (source_file
-      (package_or_generate_item_declaration
-        (function_declaration
-          (function_body_declaration
-            (function_data_type_or_implicit1
-              (data_type_or_void))
-            (function_identifier
-              (function_identifier
-                (simple_identifier)))
-            (function_statement_or_null
-              (function_statement
-                (statement
-                  (statement_item
-                    (checker_instantiation
-                      (checker_identifier
-                        (simple_identifier))
-                      (name_of_instance
-                        (instance_identifier
-                          (MISSING simple_identifier)))
-                      (formal_port_identifier
-                        (simple_identifier))
-                      (property_expr
-                        (sequence_expr
-                          (sequence_instance
-                            (simple_identifier))))
-                      (formal_port_identifier
-                        (simple_identifier))
-                      (property_expr
-                        (sequence_expr
-                          (sequence_instance
-                            (simple_identifier)))))))))))))
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_data_type_or_implicit1
+          (data_type_or_void))
+        (function_identifier
+          (function_identifier
+            (simple_identifier)))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (blocking_assignment
+                  (operator_assignment
+                    (variable_lvalue
+                      (simple_identifier)
+                      (ERROR)
+                      (select1
+                        (member_identifier
+                          (simple_identifier))))
+                    (assignment_operator
+                      (MISSING "="))
+                    (expression
+                      (primary
+                        (mintypmax_expression
+                          (expression
+                            (primary
+                              (simple_identifier))))))))
+                (ERROR
+                  (simple_identifier)
+                  (simple_identifier))))))))))
 
 
 ============================================
@@ -179,16 +170,12 @@ endclass
                   (list_of_variable_decl_assignments
                     (variable_decl_assignment
                       (simple_identifier)))))
-              (function_statement_or_null
-                (function_statement
-                  (statement
-                    (statement_item
-                      (checker_instantiation
-                        (checker_identifier
-                          (simple_identifier))
-                        (name_of_instance
-                          (instance_identifier
-                            (simple_identifier))))))))
+              (block_item_declaration
+                (data_declaration
+                  (list_of_variable_decl_assignments
+                    (variable_decl_assignment
+                      (simple_identifier)))
+                  (ERROR)))
               (function_statement_or_null
                 (function_statement
                   (statement
@@ -199,15 +186,9 @@ endclass
                             (unary_operator)
                             (primary
                               (simple_identifier))))
-                        (statement_or_null
-                          (statement
-                            (statement_item
-                              (checker_instantiation
-                                (checker_identifier
-                                  (simple_identifier))
-                                (name_of_instance
-                                  (instance_identifier
-                                    (simple_identifier))))))))))))
+                        (ERROR
+                          (simple_identifier))
+                        (statement_or_null))))))
               (function_statement_or_null
                 (function_statement
                   (statement
@@ -223,5 +204,6 @@ endclass
                                 (integral_number
                                   (decimal_number
                                     (unsigned_number)))))))))))))))))))
+
 
 

@@ -11585,10 +11585,6 @@
           "named": true
         },
         {
-          "type": "checker_instantiation",
-          "named": true
-        },
-        {
           "type": "conditional_statement",
           "named": true
         },

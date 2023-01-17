@@ -3300,7 +3300,7 @@ const rules = {
   _procedural_assertion_statement: $ => choice(
     $._concurrent_assertion_statement,
     $._immediate_assertion_statement,
-    $.checker_instantiation
+    // $.checker_instantiation
   ),
 
   _immediate_assertion_statement: $ => choice(
