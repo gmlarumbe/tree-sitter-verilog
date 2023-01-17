@@ -51,6 +51,9 @@ module foo;
     initial  begin
         uvm_config_db::get(null, "", "some_type", m_some_type);
         uvm_config_db #(some_type)::get(null, "", "some_type", m_some_type);
+        if(!uvm_config_db #(some_type)::get(null, "", "some_type", m_some_type)) begin
+           `uvm_error(get_name(), $sformatf("Error! Couldn not find %s", m_some_type))
+        end
     end
 endmodule
 
@@ -120,5 +123,66 @@ endmodule
                                   (string_literal))))
                             (expression
                               (primary
-                                (simple_identifier)))))))))))))))))
+                                (simple_identifier)))))))))
+                (statement_or_null
+                  (statement
+                    (statement_item
+                      (conditional_statement
+                        (cond_predicate
+                          (expression
+                            (unary_operator)
+                            (primary
+                              (class_scope
+                                (class_type
+                                  (class_identifier
+                                    (simple_identifier))
+                                  (parameter_value_assignment
+                                    (list_of_parameter_assignments
+                                      (ordered_parameter_assignment
+                                        (_ordered_parameter_assignment
+                                          (data_type
+                                            (simple_identifier))))))))
+                              (tf_call
+                                (simple_identifier)
+                                (list_of_arguments_parent
+                                  (expression
+                                    (primary))
+                                  (expression
+                                    (primary
+                                      (primary_literal
+                                        (string_literal))))
+                                  (expression
+                                    (primary
+                                      (primary_literal
+                                        (string_literal))))
+                                  (expression
+                                    (primary
+                                      (simple_identifier))))))))
+                        (statement_or_null
+                          (statement
+                            (statement_item
+                              (seq_block
+                                (statement_or_null
+                                  (statement
+                                    (text_macro_usage
+                                      (text_macro_identifier
+                                        (simple_identifier))
+                                      (list_of_actual_arguments
+                                        (expression
+                                          (primary
+                                            (let_expression
+                                              (simple_identifier))))
+                                        (expression
+                                          (primary
+                                            (function_subroutine_call
+                                              (subroutine_call
+                                                (system_tf_call
+                                                  (system_tf_identifier)
+                                                  (expression
+                                                    (primary
+                                                      (primary_literal
+                                                        (string_literal))))
+                                                  (expression
+                                                    (primary
+                                                      (simple_identifier))))))))))))))))))))))))))))
 
