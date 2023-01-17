@@ -1,0 +1,101 @@
+============================================
+coverage -- bins
+============================================
+
+covergroup foo_cg;
+    option.per_instance = 1;
+    label: coverpoint foo_cp {
+        bins foo_bins = {};
+        bins foo_bins = {[0:7]};
+        bins foo_bins[] = {};
+        bins foo_bins[] = {[0:7]};
+        bins foo_bins[] = default;
+    }
+endgroup
+
+----
+
+(source_file
+  (package_or_generate_item_declaration
+    (covergroup_declaration
+      (covergroup_identifier
+        (simple_identifier))
+      (coverage_spec_or_option
+        (coverage_option
+          (member_identifier
+            (simple_identifier))
+          (expression
+            (primary
+              (primary_literal
+                (integral_number
+                  (decimal_number
+                    (unsigned_number))))))))
+      (coverage_spec_or_option
+        (cover_point
+          (cover_point_identifier
+            (simple_identifier))
+          (expression
+            (primary
+              (simple_identifier)))
+          (bins_or_empty
+            (ERROR
+              (bins_keyword)
+              (simple_identifier)
+              (bins_keyword)
+              (simple_identifier)
+              (ERROR)
+              (expression
+                (primary
+                  (primary_literal
+                    (integral_number
+                      (decimal_number
+                        (unsigned_number))))))
+              (ERROR
+                (UNEXPECTED '7'))
+              (bins_keyword)
+              (simple_identifier)))))
+      (MISSING "endgroup")))
+  (package_or_generate_item_declaration)
+  (package_or_generate_item_declaration
+    (data_declaration
+      (data_type_or_implicit1
+        (data_type
+          (simple_identifier)))
+      (list_of_variable_decl_assignments
+        (variable_decl_assignment
+          (simple_identifier)
+          (unsized_dimension)
+          (expression
+            (inc_or_dec_expression
+              (variable_lvalue
+                (variable_lvalue
+                  (MISSING simple_identifier)
+                  (select1
+                    (constant_range
+                      (constant_expression
+                        (constant_primary
+                          (primary_literal
+                            (integral_number
+                              (decimal_number
+                                (unsigned_number))))))
+                      (constant_expression
+                        (constant_primary
+                          (primary_literal
+                            (integral_number
+                              (decimal_number
+                                (unsigned_number))))))))))
+              (inc_or_dec_operator
+                (MISSING "++"))))))))
+  (package_or_generate_item_declaration
+    (data_declaration
+      (data_type_or_implicit1
+        (data_type
+          (simple_identifier)))
+      (list_of_variable_decl_assignments
+        (variable_decl_assignment
+          (simple_identifier)
+          (unsized_dimension)
+          (expression
+            (primary
+              (simple_identifier)))))))
+  (ERROR))
