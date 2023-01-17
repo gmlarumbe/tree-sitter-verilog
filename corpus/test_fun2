@@ -1,4 +1,0 @@
-if(!register_test_disable) begin
-if(item.vip_transaction_item.getDirection() == DenaliSvCdn_axi::DENALI_CDN_AXI_DIRECTION_WRITE) begin
-end
-end
