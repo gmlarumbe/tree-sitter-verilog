@@ -157,11 +157,11 @@ const rules = {
 
   /* 22-3 usage */
 
-  text_macro_usage: $ => seq(
+  text_macro_usage: $ => prec.right(seq(
     '`',
     $.text_macro_identifier,
     optseq('(', $.list_of_actual_arguments, ')')
-  ),
+  )),
 
   simple_text_macro_usage: $ => seq(
     '`',
@@ -2970,10 +2970,13 @@ const rules = {
     seq(repeat($.attribute_instance), ';')
   ),
 
-  statement: $ => seq(
-    optseq($._block_identifier, ':'),
-    repeat($.attribute_instance),
-    $.statement_item
+  statement: $ => choice(
+    $.text_macro_usage,
+    seq(
+      optseq($._block_identifier, ':'),
+      repeat($.attribute_instance),
+      $.statement_item
+    )
   ),
 
   statement_item: $ => choice(
@@ -2996,7 +2999,7 @@ const rules = {
     $._procedural_assertion_statement,
     // seq($.clocking_drive, ';'),
     // $.randsequence_statement,
-    $.randcase_statement,
+    // $.randcase_statement,
     $.expect_property_statement
   ),
 

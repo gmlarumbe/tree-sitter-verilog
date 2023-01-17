@@ -10425,21 +10425,6 @@
     }
   },
   {
-    "type": "randcase_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "randcase_item",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "random_qualifier",
     "named": true,
     "fields": {}
@@ -11567,6 +11552,10 @@
         {
           "type": "statement_item",
           "named": true
+        },
+        {
+          "type": "text_macro_usage",
+          "named": true
         }
       ]
     }
@@ -11661,10 +11650,6 @@
         },
         {
           "type": "procedural_timing_control_statement",
-          "named": true
-        },
-        {
-          "type": "randcase_statement",
           "named": true
         },
         {
