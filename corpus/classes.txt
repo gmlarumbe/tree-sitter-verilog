@@ -15,11 +15,19 @@ endfunction
         (function_identifier
           (function_identifier
             (simple_identifier)))
-        (ERROR
-          (clockvar_expression
-            (clockvar
-              (simple_identifier))
-            (select1
-              (member_identifier
-                (simple_identifier))))
-          (simple_identifier))))))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (blocking_assignment
+                  (operator_assignment
+                    (variable_lvalue
+                      (simple_identifier)
+                      (select1
+                        (member_identifier
+                          (simple_identifier))))
+                    (assignment_operator)
+                    (expression
+                      (primary
+                        (simple_identifier)))))))))))))
+

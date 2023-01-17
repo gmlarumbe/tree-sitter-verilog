@@ -2994,7 +2994,7 @@ const rules = {
     $.procedural_timing_control_statement,
     $.wait_statement,
     $._procedural_assertion_statement,
-    seq($.clocking_drive, ';'),
+    // seq($.clocking_drive, ';'),
     // $.randsequence_statement,
     $.randcase_statement,
     $.expect_property_statement
