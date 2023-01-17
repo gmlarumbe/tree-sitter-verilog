@@ -9666,6 +9666,10 @@
           "named": true
         },
         {
+          "type": "class_scope",
+          "named": true
+        },
+        {
           "type": "concatenation",
           "named": true
         },
@@ -9723,6 +9727,10 @@
         },
         {
           "type": "streaming_concatenation",
+          "named": true
+        },
+        {
+          "type": "tf_call",
           "named": true
         }
       ]
@@ -11856,15 +11864,23 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "class_scope",
+          "named": true
+        },
         {
           "type": "function_subroutine_call",
           "named": true
         },
         {
           "type": "subroutine_call",
+          "named": true
+        },
+        {
+          "type": "tf_call",
           "named": true
         }
       ]

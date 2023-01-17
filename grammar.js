@@ -3281,7 +3281,8 @@ const rules = {
 
   subroutine_call_statement: $ => choice(
     seq($.subroutine_call, ';'),
-    seq('void\'', '(', $.function_subroutine_call, ')', ';')
+    seq('void\'', '(', $.function_subroutine_call, ')', ';'),
+    seq($.class_scope, $.tf_call, ';'),
   ),
 
   // A.6.10 Assertion statements
@@ -4259,16 +4260,17 @@ const rules = {
     $.sequence_method_call,
     'this',
     '$',
-    'null'
+    'null',
+    seq($.class_scope, $.tf_call),
   ),
 
-  class_qualifier: $ => seq(
+  class_qualifier: $ => prec.right(seq(
     optseq('local', '::'),
     choice( // TODO optional?
       seq($.implicit_class_handle, '.'),
       $.class_scope
     )
-  ),
+  )),
 
 
   range_expression: $ => choice(

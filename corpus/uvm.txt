@@ -49,8 +49,8 @@ uvm - uvm_config_db
 
 module foo;
     initial  begin
-        uvm_config_db::get(null, "", "some_type", m_some_type)
-        uvm_config_db #(some_type)::get(null, "", "some_type", m_some_type)
+        uvm_config_db::get(null, "", "some_type", m_some_type);
+        uvm_config_db #(some_type)::get(null, "", "some_type", m_some_type);
     end
 endmodule
 
@@ -71,55 +71,54 @@ endmodule
                   (statement
                     (statement_item
                       (subroutine_call_statement
-                        (subroutine_call
-                          (tf_call
-                            (simple_identifier)
-                            (ERROR
-                              (class_identifier
-                                (simple_identifier)))
-                            (list_of_arguments_parent
-                              (expression
-                                (primary))
-                              (expression
-                                (primary
-                                  (primary_literal
-                                    (string_literal))))
-                              (expression
-                                (primary
-                                  (primary_literal
-                                    (string_literal))))
-                              (expression
-                                (primary
-                                  (simple_identifier))))))
-                        (MISSING ";")))))
+                        (class_scope
+                          (class_type
+                            (class_identifier
+                              (simple_identifier))))
+                        (tf_call
+                          (simple_identifier)
+                          (list_of_arguments_parent
+                            (expression
+                              (primary))
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (string_literal))))
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (string_literal))))
+                            (expression
+                              (primary
+                                (simple_identifier)))))))))
                 (statement_or_null
                   (statement
                     (statement_item
                       (subroutine_call_statement
-                        (subroutine_call
-                          (tf_call
-                            (simple_identifier)
-                            (ERROR
-                              (parameter_value_assignment
-                                (list_of_parameter_assignments
-                                  (ordered_parameter_assignment
-                                    (_ordered_parameter_assignment
-                                      (data_type
-                                        (simple_identifier))))))
-                              (class_identifier
-                                (simple_identifier)))
-                            (list_of_arguments_parent
-                              (expression
-                                (primary))
-                              (expression
-                                (primary
-                                  (primary_literal
-                                    (string_literal))))
-                              (expression
-                                (primary
-                                  (primary_literal
-                                    (string_literal))))
-                              (expression
-                                (primary
-                                  (simple_identifier))))))
-                        (MISSING ";")))))))))))))
+                        (class_scope
+                          (class_type
+                            (class_identifier
+                              (simple_identifier))
+                            (parameter_value_assignment
+                              (list_of_parameter_assignments
+                                (ordered_parameter_assignment
+                                  (_ordered_parameter_assignment
+                                    (data_type
+                                      (simple_identifier))))))))
+                        (tf_call
+                          (simple_identifier)
+                          (list_of_arguments_parent
+                            (expression
+                              (primary))
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (string_literal))))
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (string_literal))))
+                            (expression
+                              (primary
+                                (simple_identifier)))))))))))))))))
+
