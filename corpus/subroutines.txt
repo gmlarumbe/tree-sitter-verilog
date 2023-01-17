@@ -17,11 +17,14 @@ endfunction
         (function_identifier
           (function_identifier
             (simple_identifier)))
-        (block_item_declaration
-          (data_declaration
-            (list_of_variable_decl_assignments
-              (variable_decl_assignment
-                (simple_identifier)))))))))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (subroutine_call_statement
+                  (subroutine_call
+                    (tf_call
+                      (simple_identifier))))))))))))
 
 
 
@@ -44,12 +47,16 @@ endfunction
         (function_identifier
           (function_identifier
             (simple_identifier)))
-        (block_item_declaration
-          (data_declaration
-            (list_of_variable_decl_assignments
-              (variable_decl_assignment
-                (simple_identifier)))
-            (ERROR)))))))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (subroutine_call_statement
+                  (subroutine_call
+                    (tf_call
+                      (simple_identifier)
+                      (list_of_arguments_parent))))))))))))
+
 
 
 ============================================
@@ -71,18 +78,22 @@ endfunction
         (function_identifier
           (function_identifier
             (simple_identifier)))
-        (block_item_declaration
-          (data_declaration
-            (data_type_or_implicit1
-              (data_type
-                (simple_identifier)))
-            (ERROR)
-            (list_of_variable_decl_assignments
-              (variable_decl_assignment
-                (simple_identifier))
-              (variable_decl_assignment
-                (simple_identifier)))
-            (ERROR)))))))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (subroutine_call_statement
+                  (subroutine_call
+                    (tf_call
+                      (simple_identifier)
+                      (list_of_arguments_parent
+                        (expression
+                          (primary
+                            (simple_identifier)))
+                        (expression
+                          (primary
+                            (simple_identifier)))))))))))))))
+
 
 
 ============================================
@@ -108,25 +119,34 @@ endfunction
           (function_statement
             (statement
               (statement_item
-                (blocking_assignment
-                  (operator_assignment
-                    (variable_lvalue
+                (subroutine_call_statement
+                  (subroutine_call
+                    (tf_call
                       (simple_identifier)
-                      (ERROR)
-                      (select1
-                        (member_identifier
-                          (simple_identifier))))
-                    (assignment_operator
-                      (MISSING "="))
-                    (expression
-                      (primary
-                        (mintypmax_expression
-                          (expression
-                            (primary
-                              (simple_identifier))))))))
-                (ERROR
-                  (simple_identifier)
-                  (simple_identifier))))))))))
+                      (list_of_arguments_parent
+                        (ERROR)
+                        (expression
+                          (primary
+                            (function_subroutine_call
+                              (subroutine_call
+                                (tf_call
+                                  (simple_identifier)
+                                  (list_of_arguments_parent
+                                    (expression
+                                      (primary
+                                        (simple_identifier)))))))))
+                        (ERROR)
+                        (expression
+                          (primary
+                            (function_subroutine_call
+                              (subroutine_call
+                                (tf_call
+                                  (simple_identifier)
+                                  (list_of_arguments_parent
+                                    (expression
+                                      (primary
+                                        (simple_identifier)))))))))))))))))))))
+
 
 
 ============================================
@@ -165,17 +185,23 @@ endclass
               (function_identifier
                 (function_identifier
                   (simple_identifier)))
-              (block_item_declaration
-                (data_declaration
-                  (list_of_variable_decl_assignments
-                    (variable_decl_assignment
-                      (simple_identifier)))))
-              (block_item_declaration
-                (data_declaration
-                  (list_of_variable_decl_assignments
-                    (variable_decl_assignment
-                      (simple_identifier)))
-                  (ERROR)))
+              (function_statement_or_null
+                (function_statement
+                  (statement
+                    (statement_item
+                      (subroutine_call_statement
+                        (subroutine_call
+                          (tf_call
+                            (simple_identifier))))))))
+              (function_statement_or_null
+                (function_statement
+                  (statement
+                    (statement_item
+                      (subroutine_call_statement
+                        (subroutine_call
+                          (tf_call
+                            (simple_identifier)
+                            (list_of_arguments_parent))))))))
               (function_statement_or_null
                 (function_statement
                   (statement
@@ -186,9 +212,14 @@ endclass
                             (unary_operator)
                             (primary
                               (simple_identifier))))
-                        (ERROR
-                          (simple_identifier))
-                        (statement_or_null))))))
+                        (statement_or_null
+                          (statement
+                            (statement_item
+                              (subroutine_call_statement
+                                (subroutine_call
+                                  (tf_call
+                                    (simple_identifier)
+                                    (list_of_arguments_parent))))))))))))
               (function_statement_or_null
                 (function_statement
                   (statement
@@ -204,6 +235,7 @@ endclass
                                 (integral_number
                                   (decimal_number
                                     (unsigned_number)))))))))))))))))))
+
 
 
 

@@ -7314,29 +7314,6 @@
     }
   },
   {
-    "type": "method_call",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "implicit_class_handle",
-          "named": true
-        },
-        {
-          "type": "method_call_body",
-          "named": true
-        },
-        {
-          "type": "primary",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "method_call_body",
     "named": true,
     "fields": {},
@@ -11669,6 +11646,10 @@
           "named": true
         },
         {
+          "type": "subroutine_call_statement",
+          "named": true
+        },
+        {
           "type": "system_tf_call",
           "named": true
         },
@@ -11816,10 +11797,6 @@
       "required": true,
       "types": [
         {
-          "type": "method_call",
-          "named": true
-        },
-        {
           "type": "randomize_call",
           "named": true
         },
@@ -11829,6 +11806,25 @@
         },
         {
           "type": "tf_call",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "subroutine_call_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "function_subroutine_call",
+          "named": true
+        },
+        {
+          "type": "subroutine_call",
           "named": true
         }
       ]

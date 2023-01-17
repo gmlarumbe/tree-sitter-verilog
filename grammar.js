@@ -1150,7 +1150,7 @@ const rules = {
       optional('const'),
       optional('var'),
       optional($.lifetime),
-      optional($.data_type_or_implicit1),
+      $.data_type_or_implicit1,
       $.list_of_variable_decl_assignments,
       ';'
     ),
@@ -2979,7 +2979,7 @@ const rules = {
     )
   ),
 
-  statement_item: $ => choice(
+  statement_item: $ => prec(PREC.PARENT, choice(
     seq($.blocking_assignment, ';'),
     seq($.nonblocking_assignment, ';'),
     seq($.procedural_continuous_assignment, ';'),
@@ -2987,7 +2987,7 @@ const rules = {
     $.case_statement,
     $.conditional_statement,
     seq($.inc_or_dec_expression, ';'),
-    // $.subroutine_call_statement,
+    $.subroutine_call_statement,
     $.disable_statement,
     $.event_trigger,
     $.loop_statement,
@@ -3001,7 +3001,7 @@ const rules = {
     // $.randsequence_statement,
     // $.randcase_statement,
     $.expect_property_statement
-  ),
+  )),
 
   function_statement: $ => $.statement,
 
@@ -3965,7 +3965,7 @@ const rules = {
   subroutine_call: $ => choice(
     $.tf_call,
     $.system_tf_call,
-    $.method_call,
+    // $.method_call,
     seq(optseq('std', '::'), $.randomize_call)
   ),
 
