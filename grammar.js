@@ -1321,7 +1321,7 @@ const rules = {
   class_scope: $ => seq($.class_type, '::'),
 
   // class_type: $ => prec.left(PREC.PARENT, seq(
-  class_type: $ => prec.right(seq(
+  class_type: $ => seq(
     $.ps_class_identifier,
     optional($.parameter_value_assignment),
     repseq(
@@ -1329,7 +1329,7 @@ const rules = {
       $.class_identifier,
       optional($.parameter_value_assignment)
     )
-  )),
+  ),
 
   _integer_type: $ => choice(
     $.integer_vector_type,
