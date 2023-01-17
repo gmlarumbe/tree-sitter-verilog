@@ -2197,7 +2197,7 @@ const rules = {
   bins_or_options: $ => choice(
     $.coverage_option,
     seq(
-      'wildcard',
+      optional('wildcard'),
       $.bins_keyword,
       $._bin_identifier,
       optseq('[', optional($._covergroup_expression), ']'),
@@ -2207,7 +2207,7 @@ const rules = {
       optional(prec.right(PREC.iff, seq('iff', '(', $.expression, ')')))
     ),
     seq(
-      'wildcard',
+      optional('wildcard'),
       $.bins_keyword,
       $._bin_identifier,
       optseq('[', optional($._covergroup_expression), ']'),
@@ -2217,7 +2217,7 @@ const rules = {
       optional(prec.right(PREC.iff, seq('iff', '(', $.expression, ')')))
     ),
     seq(
-      'wildcard',
+      optional('wildcard'),
       $.bins_keyword,
       $._bin_identifier,
       optseq('[', optional($._covergroup_expression), ']'),
@@ -2226,7 +2226,7 @@ const rules = {
       optional(prec.right(PREC.iff, seq('iff', '(', $.expression, ')')))
     ),
     seq(
-      'wildcard',
+      optional('wildcard'),
       $.bins_keyword,
       $._bin_identifier,
       optseq('[', ']'),
