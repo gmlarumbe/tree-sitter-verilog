@@ -1,0 +1,46 @@
+============================================
+macros - one arg
+============================================
+
+`some_macro(arg1)
+
+----
+
+(source_file
+  (text_macro_usage
+    (text_macro_identifier
+      (simple_identifier))
+    (list_of_actual_arguments
+      (expression
+        (primary
+          (simple_identifier))))))
+
+
+============================================
+macros - one arg
+============================================
+
+function void foo;
+  `some_macro(arg1)
+endfunction
+
+----
+
+(source_file
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_data_type_or_implicit1
+          (data_type_or_void))
+        (function_identifier
+          (function_identifier
+            (simple_identifier))))))
+  (text_macro_usage
+    (text_macro_identifier
+      (simple_identifier))
+    (list_of_actual_arguments
+      (expression
+        (primary
+          (simple_identifier)))))
+  (ERROR
+    (simple_identifier)))
