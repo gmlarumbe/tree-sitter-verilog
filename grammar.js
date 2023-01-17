@@ -781,7 +781,8 @@ const rules = {
 
   interface_or_generate_item: $ => choice(
     seq(repeat($.attribute_instance), $._module_common_item),
-    seq(repeat($.attribute_instance), $.extern_tf_declaration)
+    seq(repeat($.attribute_instance), $.extern_tf_declaration),
+    $._directives
   ),
 
   extern_tf_declaration: $ => choice(
