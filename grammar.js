@@ -2289,7 +2289,7 @@ const rules = {
   ),
 
   cross_body: $ => choice(
-    seq('{', repseq($.cross_body_item, ';'), '}'),
+    seq('{', repeat($.cross_body_item), '}'),
     ';'
   ),
 
