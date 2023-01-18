@@ -8,56 +8,68 @@ endfunction;
 
 ----
 
-    (source_file
-      (package_or_generate_item_declaration
-        (function_declaration
-          (function_body_declaration
-            (function_identifier
-              (function_identifier
-                (simple_identifier)))
-            (function_statement_or_null
-              (function_statement
-                (statement
-                  (statement_item
-                    (blocking_assignment
-                      (operator_assignment
-                        (variable_lvalue
-                          (simple_identifier)
-                          (select1
-                            (bit_select1
-                              (expression
-                                (primary
-                                  (primary_literal
-                                    (integral_number
-                                      (decimal_number
-                                        (unsigned_number))))))
-                              (expression
-                                (primary
-                                  (primary_literal
-                                    (integral_number
-                                      (decimal_number
-                                        (unsigned_number))))))
-                              (ERROR))))
-                        (assignment_operator)
-                        (expression
-                          (primary
-                            (simple_identifier)
-                            (select1
-                              (bit_select1
-                                (expression
-                                  (primary
-                                    (primary_literal
-                                      (integral_number
-                                        (decimal_number
-                                          (unsigned_number))))))
-                                (expression
-                                  (primary
-                                    (primary_literal
-                                      (integral_number
-                                        (decimal_number
-                                          (unsigned_number))))))
-                                (ERROR))))))))))))))
-      (package_or_generate_item_declaration))
+(source_file
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_identifier
+          (function_identifier
+            (simple_identifier)))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (blocking_assignment
+                  (operator_assignment
+                    (variable_lvalue
+                      (simple_identifier)
+                      (select1
+                        (bit_select1
+                          (expression
+                            (primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number)))))))
+                        (constant_range
+                          (constant_expression
+                            (constant_primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number))))))
+                          (constant_expression
+                            (constant_primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number)))))))))
+                    (assignment_operator)
+                    (expression
+                      (primary
+                        (simple_identifier)
+                        (select1
+                          (bit_select1
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))
+                          (constant_range
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number))))))
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))))))))))))))
+  (package_or_generate_item_declaration))
 
 
 
@@ -71,68 +83,80 @@ endfunction;
 
 ----
 
-    (source_file
-      (package_or_generate_item_declaration
-        (function_declaration
-          (function_body_declaration
-            (function_identifier
-              (function_identifier
-                (simple_identifier)))
-            (function_statement_or_null
-              (function_statement
-                (statement
-                  (statement_item
-                    (blocking_assignment
-                      (operator_assignment
-                        (variable_lvalue
-                          (simple_identifier)
-                          (select1
-                            (bit_select1
-                              (expression
-                                (primary
-                                  (primary_literal
-                                    (integral_number
-                                      (decimal_number
-                                        (unsigned_number))))))
-                              (expression
-                                (primary
-                                  (primary_literal
-                                    (integral_number
-                                      (decimal_number
-                                        (unsigned_number))))))
-                              (expression
-                                (primary
-                                  (primary_literal
-                                    (integral_number
-                                      (decimal_number
-                                        (unsigned_number))))))
-                              (ERROR))))
-                        (assignment_operator)
-                        (expression
-                          (primary
-                            (simple_identifier)
-                            (select1
-                              (bit_select1
-                                (expression
-                                  (primary
-                                    (primary_literal
-                                      (integral_number
-                                        (decimal_number
-                                          (unsigned_number))))))
-                                (expression
-                                  (primary
-                                    (primary_literal
-                                      (integral_number
-                                        (decimal_number
-                                          (unsigned_number))))))
-                                (expression
-                                  (primary
-                                    (primary_literal
-                                      (integral_number
-                                        (decimal_number
-                                          (unsigned_number))))))
-                                (ERROR))))))))))))))
-      (package_or_generate_item_declaration))
+(source_file
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_identifier
+          (function_identifier
+            (simple_identifier)))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (blocking_assignment
+                  (operator_assignment
+                    (variable_lvalue
+                      (simple_identifier)
+                      (select1
+                        (bit_select1
+                          (expression
+                            (primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number))))))
+                          (expression
+                            (primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number)))))))
+                        (constant_range
+                          (constant_expression
+                            (constant_primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number))))))
+                          (constant_expression
+                            (constant_primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number)))))))))
+                    (assignment_operator)
+                    (expression
+                      (primary
+                        (simple_identifier)
+                        (select1
+                          (bit_select1
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number))))))
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))
+                          (constant_range
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number))))))
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))))))))))))))
+  (package_or_generate_item_declaration))
 
 
 
@@ -146,50 +170,62 @@ endfunction;
 
 ----
 
-    (source_file
-      (package_or_generate_item_declaration
-        (function_declaration
-          (function_body_declaration
-            (function_identifier
-              (function_identifier
-                (simple_identifier)))
-            (function_statement_or_null
-              (function_statement
-                (statement
-                  (statement_item
-                    (blocking_assignment
-                      (operator_assignment
-                        (variable_lvalue
-                          (simple_identifier)
-                          (select1
-                            (bit_select1
-                              (expression
-                                (primary
-                                  (simple_identifier)))
-                              (expression
-                                (primary
-                                  (primary_literal
-                                    (integral_number
-                                      (decimal_number
-                                        (unsigned_number))))))
-                              (ERROR))))
-                        (assignment_operator)
-                        (expression
-                          (primary
-                            (simple_identifier)
-                            (select1
-                              (bit_select1
-                                (expression
-                                  (primary
-                                    (simple_identifier)))
-                                (expression
-                                  (primary
-                                    (primary_literal
-                                      (integral_number
-                                        (decimal_number
-                                          (unsigned_number))))))
-                                (ERROR))))))))))))))
-      (package_or_generate_item_declaration))
+(source_file
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_identifier
+          (function_identifier
+            (simple_identifier)))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (blocking_assignment
+                  (operator_assignment
+                    (variable_lvalue
+                      (simple_identifier)
+                      (select1
+                        (bit_select1
+                          (expression
+                            (primary
+                              (simple_identifier))))
+                        (constant_range
+                          (constant_expression
+                            (constant_primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number))))))
+                          (constant_expression
+                            (constant_primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number)))))))))
+                    (assignment_operator)
+                    (expression
+                      (primary
+                        (simple_identifier)
+                        (select1
+                          (bit_select1
+                            (expression
+                              (primary
+                                (simple_identifier))))
+                          (constant_range
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number))))))
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))))))))))))))
+  (package_or_generate_item_declaration))
 
 
 
@@ -203,20 +239,22 @@ endfunction;
 
 ----
 
-    (source_file
-      (package_or_generate_item_declaration
-        (function_declaration
-          (function_body_declaration
-            (function_identifier
-              (function_identifier
-                (simple_identifier)))
-            (tf_item_declaration
-              (block_item_declaration
-                (data_declaration
-                  (data_type_or_implicit1
-                    (data_type
+(source_file
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_identifier
+          (function_identifier
+            (simple_identifier)))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (blocking_assignment
+                  (operator_assignment
+                    (variable_lvalue
                       (simple_identifier)
-                      (packed_dimension
+                      (select1
                         (constant_range
                           (constant_expression
                             (constant_primary
@@ -229,8 +267,7 @@ endfunction;
                               (primary_literal
                                 (integral_number
                                   (decimal_number
-                                    (unsigned_number))))))))
-                      (packed_dimension
+                                    (unsigned_number)))))))
                         (constant_range
                           (constant_expression
                             (constant_primary
@@ -243,38 +280,264 @@ endfunction;
                               (primary_literal
                                 (integral_number
                                   (decimal_number
-                                    (unsigned_number))))))))))
-                  (ERROR)
-                  (list_of_variable_decl_assignments
-                    (variable_decl_assignment
-                      (simple_identifier)
-                      (unpacked_dimension
-                        (constant_range
-                          (constant_expression
-                            (constant_primary
-                              (primary_literal
-                                (integral_number
-                                  (decimal_number
-                                    (unsigned_number))))))
-                          (constant_expression
-                            (constant_primary
-                              (primary_literal
-                                (integral_number
-                                  (decimal_number
-                                    (unsigned_number))))))))
-                      (unpacked_dimension
-                        (constant_range
-                          (constant_expression
-                            (constant_primary
-                              (primary_literal
-                                (integral_number
-                                  (decimal_number
-                                    (unsigned_number))))))
-                          (constant_expression
-                            (constant_primary
-                              (primary_literal
-                                (integral_number
-                                  (decimal_number
-                                    (unsigned_number))))))))))))))))
-      (package_or_generate_item_declaration))
+                                    (unsigned_number)))))))))
+                    (assignment_operator)
+                    (expression
+                      (primary
+                        (simple_identifier)
+                        (select1
+                          (constant_range
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number))))))
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))
+                          (constant_range
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number))))))
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))))))))))))))
+  (package_or_generate_item_declaration))
 
+
+
+============================================
+arrays - member_identifier
+============================================
+
+function f;
+    left.member = right.member;
+endfunction;
+
+----
+
+(source_file
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_identifier
+          (function_identifier
+            (simple_identifier)))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (blocking_assignment
+                  (operator_assignment
+                    (variable_lvalue
+                      (simple_identifier)
+                      (select1
+                        (member_identifier
+                          (simple_identifier))))
+                    (assignment_operator)
+                    (expression
+                      (primary
+                        (simple_identifier)
+                        (select1
+                          (member_identifier
+                            (simple_identifier))))))))))))))
+  (package_or_generate_item_declaration))
+
+
+
+============================================
+arrays - member_identifier and bit_select
+============================================
+
+function f;
+    left.member.nested[1][2] = right.member.nested[1][2];
+endfunction;
+
+----
+
+(source_file
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_identifier
+          (function_identifier
+            (simple_identifier)))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (blocking_assignment
+                  (operator_assignment
+                    (variable_lvalue
+                      (simple_identifier)
+                      (select1
+                        (member_identifier
+                          (simple_identifier))
+                        (member_identifier
+                          (simple_identifier))
+                        (bit_select1
+                          (expression
+                            (primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number))))))
+                          (expression
+                            (primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number)))))))))
+                    (assignment_operator)
+                    (expression
+                      (primary
+                        (simple_identifier)
+                        (select1
+                          (member_identifier
+                            (simple_identifier))
+                          (member_identifier
+                            (simple_identifier))
+                          (bit_select1
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number))))))
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))))))))))))))
+  (package_or_generate_item_declaration))
+
+
+============================================
+arrays - member_identifier, bit_select, part_select
+============================================
+
+function f;
+    left.member.nested[1][2][1:0][1:0] = right.member.nested[1][2][1:0][1:0];
+endfunction;
+
+----
+
+(source_file
+  (package_or_generate_item_declaration
+    (function_declaration
+      (function_body_declaration
+        (function_identifier
+          (function_identifier
+            (simple_identifier)))
+        (function_statement_or_null
+          (function_statement
+            (statement
+              (statement_item
+                (blocking_assignment
+                  (operator_assignment
+                    (variable_lvalue
+                      (simple_identifier)
+                      (select1
+                        (member_identifier
+                          (simple_identifier))
+                        (member_identifier
+                          (simple_identifier))
+                        (bit_select1
+                          (expression
+                            (primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number))))))
+                          (expression
+                            (primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number)))))))
+                        (constant_range
+                          (constant_expression
+                            (constant_primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number))))))
+                          (constant_expression
+                            (constant_primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number)))))))
+                        (constant_range
+                          (constant_expression
+                            (constant_primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number))))))
+                          (constant_expression
+                            (constant_primary
+                              (primary_literal
+                                (integral_number
+                                  (decimal_number
+                                    (unsigned_number)))))))))
+                    (assignment_operator)
+                    (expression
+                      (primary
+                        (simple_identifier)
+                        (select1
+                          (member_identifier
+                            (simple_identifier))
+                          (member_identifier
+                            (simple_identifier))
+                          (bit_select1
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number))))))
+                            (expression
+                              (primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))
+                          (constant_range
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number))))))
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))
+                          (constant_range
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number))))))
+                            (constant_expression
+                              (constant_primary
+                                (primary_literal
+                                  (integral_number
+                                    (decimal_number
+                                      (unsigned_number)))))))))))))))))))
+  (package_or_generate_item_declaration))

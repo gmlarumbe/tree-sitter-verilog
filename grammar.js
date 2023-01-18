@@ -4311,25 +4311,25 @@ const rules = {
     'super'
   ),
 
-  bit_select1: $ => prec.right(repeat1(seq( // reordered -> non empty
+  bit_select1: $ => repeat1(seq( // reordered -> non empty
     '[', $.expression, ']')
-  )),
+  ),
 
   select1: $ => choice( // reordered -> non empty
     prec.left(PREC.PARENT, seq( // 1xx
       repseq('.', $.member_identifier, optional($.bit_select1)), '.', $.member_identifier,
       optional($.bit_select1),
-      optseq('[', $._part_select_range, ']')
+      repeat(seq('[', $._part_select_range, ']'))
     )),
     prec.left(PREC.PARENT, seq( // 01x
       //
       $.bit_select1,
-      optseq('[', $._part_select_range, ']')
+      repeat(seq('[', $._part_select_range, ']'))
     )),
     prec.left(PREC.PARENT, seq( // 001
       //
       //
-      seq('[', $._part_select_range, ']')
+      repeat1(seq('[', $._part_select_range, ']'))
     ))
   ),
 
@@ -4883,6 +4883,8 @@ module.exports = grammar({
     [$._description, $.package_or_generate_item_declaration],
     [$.interface_or_generate_item, $.package_or_generate_item_declaration],
     [$._non_port_module_item, $.package_or_generate_item_declaration],
+
+    [$.bit_select1],
 
   ]
     .concat(combi([
