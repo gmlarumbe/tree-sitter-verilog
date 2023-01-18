@@ -1056,7 +1056,8 @@ const rules = {
     $.covergroup_declaration,
     $.overload_declaration,
     $._assertion_item_declaration,
-    ';'
+    ';',
+    $._directives
   ),
 
   anonymous_program: $ => seq(
@@ -4878,6 +4879,11 @@ module.exports = grammar({
 
     [$.variable_lvalue, $.clockvar],
     [$.combinational_entry, $._seq_input_list],
+
+    [$._description, $.package_or_generate_item_declaration],
+    [$.interface_or_generate_item, $.package_or_generate_item_declaration],
+    [$._non_port_module_item, $.package_or_generate_item_declaration],
+
   ]
     .concat(combi([
       $.constant_primary,
