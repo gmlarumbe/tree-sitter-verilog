@@ -186,3 +186,77 @@ endmodule
                                                     (primary
                                                       (simple_identifier))))))))))))))))))))))))))))
 
+
+
+============================================
+uvm - macros: component_utils
+============================================
+
+class comp extends uvm_component;
+  `uvm_component_utils(comp)
+  // ...
+endclass
+
+----
+
+(source_file
+  (package_or_generate_item_declaration
+    (class_declaration
+      (class_identifier
+        (simple_identifier))
+      (class_type
+        (class_identifier
+          (simple_identifier)))
+      (class_item
+        (text_macro_usage
+          (text_macro_identifier
+            (simple_identifier))
+          (list_of_actual_arguments
+            (expression
+              (primary
+                (simple_identifier))))))
+      (comment))))
+
+
+============================================
+uvm - macros: component_param_utils
+============================================
+
+class driver #(type T=int) extends uvm_component;
+  `uvm_component_param_utils(driver #(T));
+   //  ...
+endclass
+
+----
+
+(source_file
+  (package_or_generate_item_declaration
+    (class_declaration
+      (class_identifier
+        (simple_identifier))
+      (parameter_port_list
+        (parameter_port_declaration
+          (list_of_type_assignments
+            (type_assignment
+              (simple_identifier)
+              (data_type
+                (integer_atom_type))))))
+      (class_type
+        (class_identifier
+          (simple_identifier)))
+      (class_item
+        (text_macro_usage
+          (text_macro_identifier
+            (simple_identifier))))
+      (ERROR
+        (class_type
+          (class_identifier
+            (simple_identifier))
+          (parameter_value_assignment
+            (list_of_parameter_assignments
+              (ordered_parameter_assignment
+                (_ordered_parameter_assignment
+                  (data_type
+                    (simple_identifier))))))))
+      (class_item)
+      (comment))))
