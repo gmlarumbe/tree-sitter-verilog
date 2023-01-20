@@ -3284,6 +3284,7 @@ const rules = {
     seq($.subroutine_call, ';'),
     seq('void\'', '(', $.function_subroutine_call, ')', ';'),
     seq($.class_scope, $.tf_call, ';'),
+    seq($.method_call, ';'),
   ),
 
   // A.6.10 Assertion statements
@@ -3968,7 +3969,7 @@ const rules = {
   subroutine_call: $ => choice(
     $.tf_call,
     $.system_tf_call,
-    // $.method_call,
+    // $.method_call, // FIXME: Moved to $.subroutine_call_statement to avoid numerous conflicts
     seq(optseq('std', '::'), $.randomize_call)
   ),
 
@@ -3995,14 +3996,20 @@ const rules = {
     ')'
   ),
 
-  method_call: $ => seq($._method_call_root, '.', $.method_call_body),
+  // method_call: $ => seq($._method_call_root, '.', $.method_call_body), // FIXME: Using $._method_call_root gives many errors
+  method_call: $ => seq(
+      choice($.implicit_class_handle, $._identifier), // $._method_call_root equivalent
+      '.',
+      $.method_call_body
+  ),
 
   method_call_body: $ => choice(
-    prec.left(seq(
+    seq(
       $.method_identifier,
       repeat($.attribute_instance),
       optional($.list_of_arguments_parent)
-    )),
+
+    ),
     $._built_in_method_call
   ),
 
@@ -4885,6 +4892,8 @@ module.exports = grammar({
     [$._non_port_module_item, $.package_or_generate_item_declaration],
 
     [$.bit_select1],
+
+    [$.variable_lvalue, $.method_identifier],
 
   ]
     .concat(combi([

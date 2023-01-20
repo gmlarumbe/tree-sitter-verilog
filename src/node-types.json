@@ -7354,6 +7354,33 @@
     }
   },
   {
+    "type": "method_call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "escaped_identifier",
+          "named": true
+        },
+        {
+          "type": "implicit_class_handle",
+          "named": true
+        },
+        {
+          "type": "method_call_body",
+          "named": true
+        },
+        {
+          "type": "simple_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "method_call_body",
     "named": true,
     "fields": {},
@@ -11913,6 +11940,10 @@
         },
         {
           "type": "function_subroutine_call",
+          "named": true
+        },
+        {
+          "type": "method_call",
           "named": true
         },
         {
