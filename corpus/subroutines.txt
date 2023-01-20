@@ -399,11 +399,13 @@ endfunction
                   (cond_predicate
                     (expression
                       (primary
-                        (simple_identifier)
-                        (select1
-                          (member_identifier
-                            (simple_identifier))))))
-                  (ERROR)
+                        (method_call
+                          (simple_identifier)
+                          (method_call_body
+                            (method_identifier
+                              (method_identifier
+                                (simple_identifier)))
+                            (list_of_arguments_parent))))))
                   (statement_or_null
                     (statement
                       (statement_item
@@ -445,10 +447,10 @@ endfunction
                     (expression
                       (unary_operator)
                       (primary
-                        (class_qualifier
-                          (implicit_class_handle))
-                        (simple_identifier))))
-                  (ERROR)
+                        (method_call
+                          (implicit_class_handle)
+                          (method_call_body
+                            (randomize_call))))))
                   (statement_or_null
                     (statement
                       (statement_item

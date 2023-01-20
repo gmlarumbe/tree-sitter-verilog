@@ -4003,7 +4003,7 @@ const rules = {
       $.method_call_body
   ),
 
-  method_call_body: $ => choice(
+  method_call_body: $ => prec.right(choice(
     seq(
       $.method_identifier,
       repeat($.attribute_instance),
@@ -4011,7 +4011,7 @@ const rules = {
 
     ),
     $._built_in_method_call
-  ),
+  )),
 
   _built_in_method_call: $ => choice(
     $.array_manipulation_call,
@@ -4270,6 +4270,7 @@ const rules = {
     '$',
     'null',
     seq($.class_scope, $.tf_call),
+    $.method_call,
   ),
 
   class_qualifier: $ => prec.right(seq(
@@ -4894,6 +4895,10 @@ module.exports = grammar({
     [$.bit_select1],
 
     [$.variable_lvalue, $.method_identifier],
+
+    [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
+    [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.generate_block_identifier, $._sequence_identifier],
+    [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.net_lvalue, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
 
   ]
     .concat(combi([

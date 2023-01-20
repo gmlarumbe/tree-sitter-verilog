@@ -9761,6 +9761,10 @@
           "named": true
         },
         {
+          "type": "method_call",
+          "named": true
+        },
+        {
           "type": "mintypmax_expression",
           "named": true
         },
