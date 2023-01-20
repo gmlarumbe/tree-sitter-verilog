@@ -255,7 +255,12 @@ const rules = {
 
   list_of_actual_arguments: $ => sep1(',', $._actual_argument),
 
-  _actual_argument: $ => $.expression,
+  _uvm_component_param_utils_macro: $ => seq($._identifier, '#', '(', $._identifier, repeat(seq(',', $._identifier)), ')'),
+
+  _actual_argument: $ => choice(
+    $.expression,
+    $._uvm_component_param_utils_macro,
+  ),
 
   /* A.1.1 Library source text */
 
@@ -4899,6 +4904,8 @@ module.exports = grammar({
     [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
     [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.generate_block_identifier, $._sequence_identifier],
     [$.sequence_instance, $.tf_call, $.method_call, $.primary, $.net_lvalue, $.variable_lvalue, $.generate_block_identifier, $._sequence_identifier],
+
+    [$._uvm_component_param_utils_macro, $.data_type, $.class_type, $.let_expression, $.tf_call, $.primary],
 
   ]
     .concat(combi([
