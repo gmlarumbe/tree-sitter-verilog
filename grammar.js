@@ -4344,7 +4344,7 @@ const rules = {
     'super'
   ),
 
-  bit_select1: $ => prec.left(PREC.PARENT, repeat1(seq( // reordered -> non empty
+  bit_select1: $ => prec.right(repeat1(seq( // reordered -> non empty
     '[', $.expression, ']')
   )),
 

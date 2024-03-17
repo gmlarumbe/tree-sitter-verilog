@@ -29345,8 +29345,8 @@
       ]
     },
     "bit_select1": {
-      "type": "PREC_LEFT",
-      "value": 37,
+      "type": "PREC_RIGHT",
+      "value": 0,
       "content": {
         "type": "REPEAT1",
         "content": {
