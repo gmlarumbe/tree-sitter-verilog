@@ -11670,6 +11670,10 @@
         {
           "type": "statement_item",
           "named": true
+        },
+        {
+          "type": "text_macro_usage",
+          "named": true
         }
       ]
     }

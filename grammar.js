@@ -3012,10 +3012,12 @@ const rules = {
     seq(repeat($.attribute_instance), ';')
   ),
 
-  statement: $ => seq(
-    optseq($._block_identifier, ':'),
-    repeat($.attribute_instance),
-    $.statement_item
+  statement: $ => choice(
+    $.text_macro_usage,
+    seq(
+      optseq($._block_identifier, ':'),
+      repeat($.attribute_instance),
+      $.statement_item)
   ),
 
   statement_item: $ => choice(
