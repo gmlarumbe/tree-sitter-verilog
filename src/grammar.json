@@ -14272,8 +14272,16 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
-              "value": "wildcard"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "wildcard"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
@@ -14408,8 +14416,16 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
-              "value": "wildcard"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "wildcard"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
@@ -14519,8 +14535,16 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
-              "value": "wildcard"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "wildcard"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
@@ -14614,8 +14638,16 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
-              "value": "wildcard"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "wildcard"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
