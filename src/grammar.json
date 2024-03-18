@@ -15238,21 +15238,8 @@
             {
               "type": "REPEAT",
               "content": {
-                "type": "PREC_LEFT",
-                "value": 0,
-                "content": {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "cross_body_item"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": ";"
-                    }
-                  ]
-                }
+                "type": "SYMBOL",
+                "name": "cross_body_item"
               }
             },
             {
