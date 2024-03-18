@@ -6296,6 +6296,10 @@
           "named": true
         },
         {
+          "type": "begin_keywords",
+          "named": true
+        },
+        {
           "type": "bind_directive",
           "named": true
         },
@@ -6317,6 +6321,10 @@
         },
         {
           "type": "continuous_assign",
+          "named": true
+        },
+        {
+          "type": "default_nettype_compiler_directive",
           "named": true
         },
         {
@@ -6344,7 +6352,15 @@
           "named": true
         },
         {
+          "type": "id_directive",
+          "named": true
+        },
+        {
           "type": "if_generate_construct",
+          "named": true
+        },
+        {
+          "type": "include_compiler_directive",
           "named": true
         },
         {
@@ -6353,6 +6369,10 @@
         },
         {
           "type": "interface_instantiation",
+          "named": true
+        },
+        {
+          "type": "line_compiler_directive",
           "named": true
         },
         {
@@ -6369,6 +6389,26 @@
         },
         {
           "type": "program_instantiation",
+          "named": true
+        },
+        {
+          "type": "text_macro_definition",
+          "named": true
+        },
+        {
+          "type": "text_macro_usage",
+          "named": true
+        },
+        {
+          "type": "timescale_compiler_directive",
+          "named": true
+        },
+        {
+          "type": "unconnected_drive",
+          "named": true
+        },
+        {
+          "type": "zero_directive",
           "named": true
         }
       ]
@@ -9045,6 +9085,10 @@
       "required": false,
       "types": [
         {
+          "type": "begin_keywords",
+          "named": true
+        },
+        {
           "type": "checker_declaration",
           "named": true
         },
@@ -9065,6 +9109,10 @@
           "named": true
         },
         {
+          "type": "default_nettype_compiler_directive",
+          "named": true
+        },
+        {
           "type": "dpi_import_export",
           "named": true
         },
@@ -9077,11 +9125,23 @@
           "named": true
         },
         {
+          "type": "id_directive",
+          "named": true
+        },
+        {
+          "type": "include_compiler_directive",
+          "named": true
+        },
+        {
           "type": "interface_class_declaration",
           "named": true
         },
         {
           "type": "let_declaration",
+          "named": true
+        },
+        {
+          "type": "line_compiler_directive",
           "named": true
         },
         {
@@ -9110,6 +9170,26 @@
         },
         {
           "type": "task_declaration",
+          "named": true
+        },
+        {
+          "type": "text_macro_definition",
+          "named": true
+        },
+        {
+          "type": "text_macro_usage",
+          "named": true
+        },
+        {
+          "type": "timescale_compiler_directive",
+          "named": true
+        },
+        {
+          "type": "unconnected_drive",
+          "named": true
+        },
+        {
+          "type": "zero_directive",
           "named": true
         }
       ]

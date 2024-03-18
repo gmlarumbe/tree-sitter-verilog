@@ -236,46 +236,50 @@
       ]
     },
     "text_macro_usage": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "`"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "text_macro_identifier"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "PREC_LEFT",
-              "value": 0,
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "("
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "list_of_actual_arguments"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ")"
-                  }
-                ]
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "`"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "text_macro_identifier"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PREC_LEFT",
+                "value": 0,
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "("
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "list_of_actual_arguments"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": ")"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "BLANK"
               }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
+            ]
+          }
+        ]
+      }
     },
     "simple_text_macro_usage": {
       "type": "SEQ",
@@ -4208,6 +4212,10 @@
               "name": "extern_tf_declaration"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_directives"
         }
       ]
     },
@@ -6018,6 +6026,10 @@
         {
           "type": "STRING",
           "value": ";"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_directives"
         }
       ]
     },
@@ -32433,6 +32445,18 @@
       "module_instantiation",
       "interface_instantiation",
       "program_instantiation"
+    ],
+    [
+      "_description",
+      "package_or_generate_item_declaration"
+    ],
+    [
+      "interface_or_generate_item",
+      "package_or_generate_item_declaration"
+    ],
+    [
+      "_non_port_module_item",
+      "package_or_generate_item_declaration"
     ]
   ],
   "precedences": [],

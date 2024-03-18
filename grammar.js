@@ -197,11 +197,11 @@ const rules = {
 
   /* 22-3 usage */
 
-  text_macro_usage: $ => seq(
+  text_macro_usage: $ => prec.right(seq(
     '`',
     $.text_macro_identifier,
     optseq('(', $.list_of_actual_arguments, ')')
-  ),
+  )),
 
   simple_text_macro_usage: $ => seq(
     '`',
@@ -821,7 +821,8 @@ const rules = {
 
   interface_or_generate_item: $ => choice(
     seq(repeat($.attribute_instance), $._module_common_item),
-    seq(repeat($.attribute_instance), $.extern_tf_declaration)
+    seq(repeat($.attribute_instance), $.extern_tf_declaration),
+    $._directives
   ),
 
   extern_tf_declaration: $ => choice(
@@ -1095,7 +1096,8 @@ const rules = {
     $.covergroup_declaration,
     $.overload_declaration,
     $._assertion_item_declaration,
-    ';'
+    ';',
+    $._directives
   ),
 
   anonymous_program: $ => seq(
@@ -4993,5 +4995,8 @@ module.exports = grammar({
     [$.class_type],
     [$.class_type, $.interface_instantiation, $.program_instantiation],
     [$.class_type, $.module_instantiation, $.interface_instantiation, $.program_instantiation],
+    [$._description, $.package_or_generate_item_declaration],
+    [$.interface_or_generate_item, $.package_or_generate_item_declaration],
+    [$._non_port_module_item, $.package_or_generate_item_declaration],
   ],
 });
