@@ -293,9 +293,19 @@ const rules = {
 
   // TODO missing arguments, empty list of arguments
 
+  // To use a macro defined with arguments, the name of the text macro shall be
+  // followed by a list of actual arguments in parentheses, separated by
+  // commas. Actual arguments and defaults shall not contain comma or right
+  // parenthesis characters outside matched pairs of left and right parentheses
+  // (), square brackets [], braces {}, double quotes "", or an escaped
+  // identifier.
   list_of_actual_arguments: $ => sep1(',', $._actual_argument),
 
-  _actual_argument: $ => $.expression,
+  _actual_argument: $ => choice(
+    $.expression,
+    $.data_type // INFO: Many UVM macros require a class type as an argument
+  ),
+
 
   /* A.1.1 Library source text */
 

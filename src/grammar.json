@@ -680,8 +680,17 @@
       }
     },
     "_actual_argument": {
-      "type": "SYMBOL",
-      "name": "expression"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "data_type"
+        }
+      ]
     },
     "_description": {
       "type": "CHOICE",

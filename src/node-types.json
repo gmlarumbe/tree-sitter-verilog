@@ -6742,6 +6742,10 @@
       "required": true,
       "types": [
         {
+          "type": "data_type",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         }

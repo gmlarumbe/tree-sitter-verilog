@@ -229,27 +229,35 @@ endclass
 
 ----
 
-(source_file
-  (package_or_generate_item_declaration
-    (class_declaration
-      (class_identifier
+(source_file 
+  (package_or_generate_item_declaration 
+    (class_declaration 
+      (class_identifier 
         (simple_identifier))
-      (parameter_port_list
-        (parameter_port_declaration
-          (list_of_type_assignments
-            (type_assignment
+      (parameter_port_list 
+        (parameter_port_declaration 
+          (list_of_type_assignments 
+            (type_assignment 
               (simple_identifier)
-              (data_type
+              (data_type 
                 (integer_atom_type))))))
-      (class_type
-        (class_identifier
+      (class_type 
+        (class_identifier 
           (simple_identifier)))
-      (class_item
-        (text_macro_usage
-          (text_macro_identifier
+      (class_item 
+        (text_macro_usage 
+          (text_macro_identifier 
             (simple_identifier))
-          (list_of_actual_arguments
-            (simple_identifier)
-            (simple_identifier))))
+          (list_of_actual_arguments 
+            (data_type 
+              (class_type 
+                (class_identifier 
+                  (simple_identifier))
+                (parameter_value_assignment 
+                  (list_of_parameter_assignments 
+                    (ordered_parameter_assignment 
+                      (_ordered_parameter_assignment 
+                        (data_type 
+                          (simple_identifier)))))))))))
       (class_item)
       (comment))))
