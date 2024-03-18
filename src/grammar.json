@@ -20437,19 +20437,6 @@
           "name": "_procedural_assertion_statement"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "clocking_drive"
-            },
-            {
-              "type": "STRING",
-              "value": ";"
-            }
-          ]
-        },
-        {
           "type": "SYMBOL",
           "name": "randcase_statement"
         },
@@ -31807,10 +31794,6 @@
       "concurrent_assertion_item",
       "deferred_immediate_assertion_item",
       "generate_block_identifier"
-    ],
-    [
-      "clockvar",
-      "variable_lvalue"
     ],
     [
       "_seq_input_list",

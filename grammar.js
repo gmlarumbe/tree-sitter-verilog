@@ -3048,7 +3048,7 @@ const rules = {
     $.procedural_timing_control_statement,
     $.wait_statement,
     $._procedural_assertion_statement,
-    seq($.clocking_drive, ';'),
+    // seq($.clocking_drive, ';'),
     // $.randsequence_statement,
     $.randcase_statement,
     $.expect_property_statement
@@ -4884,7 +4884,7 @@ module.exports = grammar({
     [$.module_path_primary, $.tf_call],
     [$._package_item, $.package_declaration],
     [$.concurrent_assertion_item, $.deferred_immediate_assertion_item, $.generate_block_identifier],
-    [$.clockvar, $.variable_lvalue],
+    // [$.clockvar, $.variable_lvalue],
     [$._seq_input_list, $.combinational_entry],
     [$.constant_primary, $.primary],
     [$.let_expression, $.primary],

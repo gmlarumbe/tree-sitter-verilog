@@ -2181,29 +2181,6 @@
     }
   },
   {
-    "type": "clocking_drive",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "clockvar_expression",
-          "named": true
-        },
-        {
-          "type": "cycle_delay",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "clocking_event",
     "named": true,
     "fields": {},
@@ -11708,10 +11685,6 @@
         },
         {
           "type": "checker_instantiation",
-          "named": true
-        },
-        {
-          "type": "clocking_drive",
           "named": true
         },
         {
